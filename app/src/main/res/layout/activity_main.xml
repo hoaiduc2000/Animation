@@ -35,4 +35,10 @@
         android:text="rotate"
         android:id="@+id/rotate"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="complex"
+        android:id="@+id/complex"
+        />
 </LinearLayout>

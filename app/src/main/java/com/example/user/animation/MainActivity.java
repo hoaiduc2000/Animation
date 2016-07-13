@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mButtonAlpha;
     private Button mButtonScale;
     private Button mButtonRotate;
+    private Button mButtonComplex;
     private Animation mAnimation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         mButtonAlpha = (Button) findViewById(R.id.alpha);
         mButtonScale = (Button) findViewById(R.id.scale);
         mButtonRotate = (Button) findViewById(R.id.rotate);
+        mButtonComplex = (Button) findViewById(R.id.complex);
+
 
         mButtonTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 view.startAnimation(animRotate);
+            }
+        });
+
+        mButtonComplex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AnimationSet mAnimationSet = new AnimationSet(false);
+                mAnimationSet.addAnimation(animAlpha);
+                mAnimationSet.addAnimation(animScale);
+                mAnimationSet.addAnimation(animRotate);
+                mAnimationSet.addAnimation(animTranslate);
+                view.startAnimation(mAnimationSet);
             }
         });
 
