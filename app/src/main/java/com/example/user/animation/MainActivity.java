@@ -7,15 +7,17 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button mButtonTranslate;
     private Button mButtonAlpha;
     private Button mButtonScale;
-    private Button mButtonRotate;
+    private ImageView mImageViewRotate;
     private Button mButtonComplex;
     private Animation mAnimation;
+    private int flag = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +27,11 @@ public class MainActivity extends AppCompatActivity {
         final Animation animAlpha = AnimationUtils.loadAnimation(this,R.anim.anim_alpha);
         final Animation animScale = AnimationUtils.loadAnimation(this,R.anim.anim_scale);
         final Animation animRotate = AnimationUtils.loadAnimation(this,R.anim.anim_rotate);
+        final Animation animRotateBack = AnimationUtils.loadAnimation(this,R.anim.anim_rotate_back);
         mButtonTranslate = (Button) findViewById(R.id.translate);
         mButtonAlpha = (Button) findViewById(R.id.alpha);
         mButtonScale = (Button) findViewById(R.id.scale);
-        mButtonRotate = (Button) findViewById(R.id.rotate);
+        mImageViewRotate = (ImageView) findViewById(R.id.rotate);
         mButtonComplex = (Button) findViewById(R.id.complex);
 
 
@@ -53,10 +56,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonRotate.setOnClickListener(new View.OnClickListener() {
+        mImageViewRotate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.startAnimation(animRotate);
+                animRotate.setFillAfter(true);
+                if(flag ==1) {
+                    view.startAnimation(animRotate);
+                flag = 0;
+
+                }
+                else if(flag == 0){
+                    view.startAnimation(animRotateBack);
+                    flag = 1;
+                }
             }
         });
 
